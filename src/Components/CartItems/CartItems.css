@@ -1,0 +1,87 @@
+.cartitems {
+    margin: 100px 170px;
+}
+
+.cartitems hr {
+    height: 3px;
+    background: #e2e2e2;
+    border: 0;
+}
+
+.cartitem-format-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    /* Center text horizontally using either method below */
+    text-align: center; /* Option 1 */
+    /* justify-content: center;  Option 2 */
+    align-items: center;
+    gap: 10px;
+    padding: 20px 0;
+    color: #454545;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.carticon-product-icon {
+    height: 50px;
+}
+
+.cartitems-format {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.cart-remove-icon {
+    position: absolute;
+    width: 20px;
+    top: 320;
+    left: 1600px;
+}
+
+.cart-items-qty {
+    width: 30px;
+    height: 30px;
+    border: 2px solid black;
+}
+
+.cartitems-down {
+    margin: 100px 0;
+}
+
+.cartitem-total {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-right: 200px;
+}
+
+.cartitems-total-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.cartitem-total button {
+    width: 200px;
+    height: 50px;
+    outline: none;
+    border: none;
+    background: brown;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.quanity-items { 
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    gap: 10px; 
+}
+
+.cart-items-qty-b {
+    width: 30px; 
+    height: 30px; 
+}

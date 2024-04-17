@@ -16,19 +16,21 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route path='/' element={<Home />}/>
-        <Route path='/Fiction' element={<HomeCatergory banner={fiction_banner} category="fiction" />}/>
-        <Route path='/Non-Fiction' element={<HomeCatergory banner={nonfiction_banner} category="non-fiction"/>}/>
-        <Route path='/Kids' element={<HomeCatergory banner={kid_banner} category="kid"/>}/>
-        <Route path='/product' element={<Product />}>
-          <Route path=':productId' element={<Product/>}/>
-        </Route>
-        <Route path='/cart' element={<Cart/>}/>
-        <Route path='/login' element={<LoginSignup/>}/>
-      </Routes>
-      <Footer />
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/Fiction' element={<HomeCatergory banner={fiction_banner} category="fiction" />} />
+          <Route path='/Non-Fiction' element={<HomeCatergory banner={nonfiction_banner} category="non-fiction" />} />
+          <Route path='/Kids' element={<HomeCatergory banner={kid_banner} category="kid" />} />
+          <Route path='/product' element={<Product />}>
+            
+            <Route path=':productId' element={<Product />} />
+          </Route>
+          <Route path='/cart' element={<Cart />} />
+          <Route path='/login' element={<LoginSignup />} />
+        </Routes>
+        <Footer />
+
       </BrowserRouter>
     </div>
   );
