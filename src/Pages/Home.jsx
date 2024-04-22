@@ -4,14 +4,16 @@ import Popular from '../Components/Polular/Popular'
 import Offers from '../Components/Offers/Offers'
 import NewCollections from '../Components/NewCollections/NewCollections'
 import NewsLetter from '../Components/NewsLetter/NewsLetter'
+import BooksList from '../Components/item/BookList'
 
 const Home = () => {
   return (
     <div>
       <Hero />
-      <Popular />
+      < BooksList />
+      {/* <Popular /> */}
       <Offers />
-      <NewCollections />
+      {/* <NewCollections /> */}
       <NewsLetter />
     </div>
   )
