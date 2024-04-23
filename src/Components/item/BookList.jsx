@@ -1,20 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './BookList.css';
 import { Link } from 'react-router-dom';
-import useBooks from './useBooks'; 
+import useBooks from './useBooks';
 
 const BooksList = () => {
-  const books = useBooks(); 
+  const books = useBooks();
+  const [searchQuery, setSearchQuery] = useState("");
 
   return (
     <div className='booklist'>
+      <div className="search-bar">
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search your books by Author/Category/BookName"
+        />
+      </div>
       <h2>Books List</h2>
       <hr />
       <ul className='collections'>
-        {books.map(book => (
+        {books.filter((item)=>(item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||item.author_name.toLowerCase().includes(searchQuery.toLowerCase())  || item.category_name.toLowerCase().includes(searchQuery.toLowerCase()) ))
+        .map(book => (
           <li key={book.id}>
-            <Link to={`/product/${book.id}`}> {/* Link to each book's individual product page */}
-              <img src={book.cover_image} alt={book.title} /> {/* Image should be wrapped with Link */}
+            <Link to={`/product/${book.id}`}> 
+              <img src={book.cover_image} alt={book.title} /> 
             </Link>
             <br />
             <strong>Title:</strong> {book.title}<br />
@@ -34,28 +44,3 @@ export default BooksList;
 
 
 
-// import React from 'react'
-// import { Link } from 'react-router-dom'
-// import './Item.css'
-
-
-
-// const Item = (props) => {
-//   return (
-//     <div className='item'>
-//     <Link to={`/product/${props.id}`}>  <img src={props.image} alt="" /> </Link>
-//       <p>{props.name}</p>
-//       <div className="itemprices">
-//         <div className="item-price-new">
-//         ₹{props.new_price}
-//         </div>
-//             <div className="item-price-old">
-//             ₹{props.old_price}
-//             </div>
-//       </div>
-//     </div>
-
-//   )
-// }
-
-// export default Item

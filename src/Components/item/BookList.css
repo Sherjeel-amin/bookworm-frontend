@@ -38,3 +38,19 @@
 .collections img{
     width: 300px;
 }
+
+.search-bar {
+    width: 1000px;
+    margin-bottom: 20px;
+    margin-top: 0px;
+  }
+  
+  .search-bar input[type=text] {
+    width: 100%;
+    padding: 20px;
+    font-size: 25px;
+    border: 2px solid rgb(142, 122, 122);
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+
