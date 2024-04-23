@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import './CartItems.css';
 import { ShopContext } from '../../Context/ShopContext';
-import remove_icon from '../Assets/cart_cross_icon.png';
+
 
 const CartItems = () => {
     const { getTotalCartAmount, all_product, cartItems, addToCart, removeFromCart } = useContext(ShopContext);
@@ -25,7 +25,7 @@ const CartItems = () => {
                 <p>Price</p>
                 <p>Qty</p>
                 <p>Total</p>
-                <p>Remove</p>
+  
             </div>
             <hr />
             {all_product.map((e) => {
@@ -33,17 +33,17 @@ const CartItems = () => {
                     return (
                         <div key={e.id}>
                             <div className="cartitems-format cartitem-format-main">
-                                <img className="carticon-product-icon" src={e.image} alt="" />
-                                <p>{e.name}</p>
-                                <p>${e.new_price}</p>
+                                <img className="carticon-product-icon" src={e.cover_image} alt="" />
+                                <p>{e.title}</p>
+                                <p>₹{e.price}</p>
                                 <div className="quanity-items">
                                 <button className='cart-items-qty-b' onClick={() => handleDecreaseQuantity(e.id)}>-</button>
                                 <span>{cartItems[e.id]}</span>
                                 <button className='cart-items-qty-b' onClick={() => handleIncreaseQuantity(e.id)}>+</button>
                                 </div>
-                                <p>${e.new_price * cartItems[e.id]}</p>
+                                <p>₹{e.price * cartItems[e.id]}</p>
                 
-                                <img className="cart-remove-icon" src={remove_icon} onClick={() => { removeFromCart(e.id) }} alt="" />
+                    
                             </div>
                             <hr />
                         </div>
@@ -57,12 +57,12 @@ const CartItems = () => {
                     <div>
                         <div className="cartitems-total-item">
                             <p>Subtotal</p>
-                            <p>${totalAmount}</p>
+                            <p>₹{totalAmount}</p>
                         </div>
                         <hr />
                         <div className="cartitems-total-item">
                             <h3>Total</h3>
-                            <h3>${totalAmount}</h3>
+                            <h3>₹{totalAmount}</h3>
                         </div>
                         <button>Proceed to Checkout</button>
                     </div>

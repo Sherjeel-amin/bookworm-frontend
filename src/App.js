@@ -12,6 +12,7 @@ import fiction_banner from './Components/Assets/banner_fiction.png';
 import nonfiction_banner from './Components/Assets/nonfiction_banner.png';
 import kid_banner from './Components/Assets/banner_kids.png';
 
+
 function App() {
   return (
     <div>
@@ -19,9 +20,9 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/Fiction' element={<HomeCatergory banner={fiction_banner} category="fiction" />} />
-          <Route path='/Non-Fiction' element={<HomeCatergory banner={nonfiction_banner} category="non-fiction" />} />
-          <Route path='/Kids' element={<HomeCatergory banner={kid_banner} category="kid" />} />
+          <Route path='/Fiction' element={<HomeCatergory banner={fiction_banner} category="Fiction" />} />
+          <Route path='/Non-Fiction' element={<HomeCatergory banner={nonfiction_banner} category="Non-fiction" />} />
+          <Route path='/Kids' element={<HomeCatergory banner={kid_banner} category="Kids" />} />
           <Route path='/product' element={<Product />}>
             
             <Route path=':productId' element={<Product />} />
@@ -30,8 +31,8 @@ function App() {
           <Route path='/login' element={<LoginSignup />} />
         </Routes>
         <Footer />
-
       </BrowserRouter>
+
     </div>
   );
 }
