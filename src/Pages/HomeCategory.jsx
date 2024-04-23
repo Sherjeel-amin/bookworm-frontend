@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 const HomeCategory = (props) => {
     const { all_product } = useContext(ShopContext);
 
-    // Filter books based on the selected category
     const filteredBooks = all_product.filter(book => book.category_name === props.category);
 
     return (

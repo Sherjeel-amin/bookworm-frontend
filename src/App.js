@@ -11,7 +11,7 @@ import Footer from './Components/Footer/Footer';
 import fiction_banner from './Components/Assets/banner_fiction.png';
 import nonfiction_banner from './Components/Assets/nonfiction_banner.png';
 import kid_banner from './Components/Assets/banner_kids.png';
-import { ToastContainer } from 'react-toastify';
+
 
 function App() {
   return (

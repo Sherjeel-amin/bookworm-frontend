@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const useBooks = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost/bookworm/backend/Model/Books.php')
-      .then(response => response.json())
-      .then(data => setBooks(data))
+    axios.get(`${process.env.REACT_APP_API_BASE_URL}/Books.php`)
+      .then(response => setBooks(response.data))
       .catch(error => console.error('Error fetching books:', error));
   }, []);
 
