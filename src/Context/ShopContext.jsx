@@ -1,18 +1,22 @@
 import React, { createContext, useState } from "react";
-import all_product from "../Components/Assets/all_product";
+import useBooks from "../Components/item/useBooks";
 
 export const ShopContext = createContext(null);
 
-const getDefaultCart = () => {
+const getDefaultCart = (books) => {
     let cart = {}
-    for (let index = 0; index < all_product.length + 1; index++) {
-        cart[index] = 0
+    for (const book of books) {
+        cart[book.id] = 0;
     }
     return cart;
 }
 
 const ShopContextProvider = (props) => {
-    const [cartItems, setCartItems] = useState(getDefaultCart());
+    const books = useBooks(); // assuming useBooks provides the list of products
+    const [cartItems, setCartItems] = useState(getDefaultCart(books));
+
+    // Assuming you have some way to fetch or store all products
+    const all_product = books; 
 
     const addToCart = (itemId) => {
         setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }))
@@ -26,11 +30,11 @@ const ShopContextProvider = (props) => {
         let totalAmount = 0;
         for (const item in cartItems) {
             if (cartItems[item] > 0) {
-                let itemInfo = all_product.find((product) => product.id === Number(item));
+                let itemInfo = books.find((product) => product.id === Number(item));
                 totalAmount += itemInfo.new_price * cartItems[item];
             }
         }
-        return totalAmount; // Moved outside the loop
+        return totalAmount; 
     }
 
     const contextValue = { getTotalCartAmount, all_product, cartItems, addToCart, removeFromCart };
