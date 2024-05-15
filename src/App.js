@@ -1,4 +1,3 @@
-
 import './App.css';
 import Navbar from './Components/Navbar/Navbar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -11,6 +10,14 @@ import Footer from './Components/Footer/Footer';
 import fiction_banner from './Components/Assets/banner_fiction.png';
 import nonfiction_banner from './Components/Assets/nonfiction_banner.png';
 import kid_banner from './Components/Assets/banner_kids.png';
+import Login from './Pages/Login';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Summary from './Pages/Summary';
+import UserProfile from './Pages/UserProfile';
+import MyOrders from './Pages/MyOrders';
+import { PrivateRoutes } from './Components/PrivateRoute';
+
 
 
 function App() {
@@ -23,14 +30,21 @@ function App() {
           <Route path='/Fiction' element={<HomeCatergory banner={fiction_banner} category="Fiction" />} />
           <Route path='/Non-Fiction' element={<HomeCatergory banner={nonfiction_banner} category="Non-fiction" />} />
           <Route path='/Kids' element={<HomeCatergory banner={kid_banner} category="Kids" />} />
+          <Route path='/signup' element={<LoginSignup />} />
+          <Route path='/login' element= {<Login />} />
           <Route path='/product' element={<Product />}>
-            
+
             <Route path=':productId' element={<Product />} />
           </Route>
+          <Route element={<PrivateRoutes />}>
           <Route path='/cart' element={<Cart />} />
-          <Route path='/login' element={<LoginSignup />} />
+          <Route path='/Summary' element= {<Summary />} />
+          <Route path='/profile' element= {<UserProfile />} />
+          <Route path='/myorders' element ={<MyOrders />} />
+          </Route>
         </Routes>
         <Footer />
+        <ToastContainer/>
       </BrowserRouter>
 
     </div>

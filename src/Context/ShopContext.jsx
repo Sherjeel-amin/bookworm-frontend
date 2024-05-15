@@ -10,10 +10,12 @@ const ShopContextProvider = (props) => {
         return storedCart || {};
     });
 
+    const [isLoggedIn, setIsLoggedIn] = useState(false); // Initialize isLoggedIn state
+
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/Books.php`);
+                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/books`);
                 const booksData = response.data;
                 setBooks(booksData);
             } catch (error) {
@@ -22,14 +24,6 @@ const ShopContextProvider = (props) => {
         };
         fetchData();
     }, []);
-
-    const getDefaultCart = (books) => {
-        let cart = {};
-        for (const book of books) {
-            cart[book.id] = 0;
-        }
-        return cart;
-    }
 
     const all_product = books ? books : [];
 
@@ -64,7 +58,27 @@ const ShopContextProvider = (props) => {
         return totalAmount; 
     }
 
-    const contextValue = { getTotalCartAmount, all_product, cartItems, addToCart, removeFromCart };
+    const getTotalCartItems = () =>{
+        let totalItem = 0;
+        for(const item in cartItems){
+            if(cartItems[item]>0)
+            {
+                totalItem += cartItems[item];
+            }
+        }
+        return totalItem
+    }
+
+    const contextValue = { 
+        getTotalCartItems, 
+        getTotalCartAmount, 
+        all_product, 
+        cartItems, 
+        addToCart, 
+        removeFromCart, 
+        isLoggedIn, 
+        setIsLoggedIn
+    };
 
     return (
         <ShopContext.Provider value={contextValue}>

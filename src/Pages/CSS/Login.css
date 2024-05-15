@@ -1,57 +1,57 @@
-.loginsignup {
+.login {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f9f9f9; 
+    background-color: #f9f9f9; /* Light background color */
 }
 
-.loginsignup-container {
-    width: 400px; 
-    background: rgba(255, 255, 255, 0.9);
+.login-container {
+    width: 400px; /* Original width */
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
     border-radius: 20px;
     padding: 40px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Sharper box shadow */
 }
 
-.loginsignup-container h1 {
+.login-container h1 {
     margin: 0 0 20px;
     font-size: 24px;
     text-align: center;
-    color: #0b0808; 
+    color: #0b0808; /* Text color */
 }
 
-.loginsignup-fields {
+.login-fields {
     margin-bottom: 20px;
 }
 
-.loginsignup-fields input {
+.login-fields input {
     width: 100%;
     font-size: 16px;
     padding: 12px;
     margin-bottom: 20px;
     border: none;
     border-radius: 10px;
-    background: rgba(255, 255, 255, 0.75); 
-    color: #000; 
+    background: rgba(255, 255, 255, 0.75); /* Semi-transparent white */
+    color: #000; /* Black text color */
     box-shadow: inset 2px 2px 4px rgba(255, 255, 255, 0.1), inset -2px -2px 4px rgba(255, 255, 255, 0.5);
     transition: background-color 0.3s ease;
 }
 
-.loginsignup-fields input::placeholder {
-    font-size: 14px;
-    color: #000; 
+.login-fields input::placeholder {
+    font-size: 16px;
+    color: #332727; 
 }
 
-.loginsignup-fields input:focus {
+.login-fields input:focus {
     outline: none;
-    background: rgba(255, 255, 255, 0.9); 
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent white on focus */
 }
 
-.loginsignup-container button {
+.login-container button {
     width: 100%;
     padding: 12px;
-    background: #e31d02;
+    background: #e31d02; /* Coral button color */
     color: white;
     border: none;
     border-radius: 10px;
@@ -59,28 +59,22 @@
     transition: background-color 0.3s ease;
 }
 
-.loginsignup-container button:hover {
+.login-container button:hover {
     background: #ff6b6b; 
 }
 
-.loginsignup-login {
+.login-login {
     margin-top: 20px;
     text-align: center;
     color: #060303; 
 }
 
-.loginsignup-login a {
-    color: #e3260d; 
+.login-login a {
+    color: #e3260d; /* Coral link color */
     text-decoration: none;
 }
 
-.loginsignup-login a:hover {
+.login-login a:hover {
     text-decoration: underline;
 }
 
-.error {
-    color: #f50404; 
-    font-size: 14px;
-    margin-top: 5px; 
-    text-align: center; 
-}

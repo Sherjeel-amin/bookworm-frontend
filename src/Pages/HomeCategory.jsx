@@ -12,14 +12,6 @@ const HomeCategory = (props) => {
     return (
         <div className='shop-category'>
             <img className='shopcategory-banner' src={props.banner} alt="" />
-            <div className="shopcategory-indexSort">
-                <p>
-                    <span>Showing 1 - 12</span> out of 36
-                </p>
-                <br />
-                <span className='shopcategory-sort'>
-                    Sort by <img src={dropdown_icon} alt="" />
-                </span>
                 <div className="shopcategory-products">
                     {filteredBooks.map((book) => (
                         <div key={book.id} className="book-item">
@@ -30,13 +22,12 @@ const HomeCategory = (props) => {
                                 <strong>Title:</strong> {book.title}<br />
                                 <strong>Author:</strong> {book.author_name}<br />
                                 <strong>Description:</strong> {book.description}<br />
-                                <strong>Price:</strong> ${book.price}<br />
+                                <strong>Price:</strong> ₹{book.price}<br />
                                 <strong>Category:</strong> {book.category_name}<br />
                             </div>
                         </div>
                     ))}
                 </div>
-            </div>
         </div>
     );
 }
