@@ -1,0 +1,72 @@
+/* Container styles */
+.my-orders-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px;
+  }
+  
+  /* Title styles */
+  .my-orders-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #333;
+    text-transform: uppercase;
+  }
+  
+  /* Orders list styles */
+  .orders-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 40px;
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  /* Order card styles */
+  .order-item {
+    padding: 30px;
+    background-color: #f8f9fa;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  
+  .order-item:hover {
+    transform: translateY(-5px);
+    transition: all ease-in-out;
+  }
+  
+  /* Order content styles */
+  .order-content {
+    padding: 30px;
+  }
+  
+  /* Order ID styles */
+  .order-id {
+    margin: 0 0 20px;
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  /* Address styles */
+  .address, .items {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    color: #555;
+  }
+  
+  /* Order total styles */
+  .order-total {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    color: #4caf50;
+  }
+  
+  /* Order date styles */
+  .order-date {
+    font-size: 1rem;
+    color: #888;
+  }
+  

@@ -12,9 +12,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
-    /* Center text horizontally using either method below */
-    text-align: center; /* Option 1 */
-    /* justify-content: center;  Option 2 */
+    text-align: center; 
     align-items: center;
     gap: 10px;
     padding: 20px 0;
@@ -37,6 +35,7 @@
     width: 20px;
     top: 320;
     left: 1600px;
+    cursor: pointer;
 }
 
 .cart-items-qty {
@@ -84,4 +83,9 @@
 .cart-items-qty-b {
     width: 30px; 
     height: 30px; 
+}
+.empty-cart{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

@@ -1,7 +1,6 @@
 import React from 'react'
 import './Hero.css'
 import hand_icon from '../Assets/hand_icon.png'
-import arrow_icon from '../Assets/arrow.png'
 
 const Hero = () => {
   return (
@@ -15,10 +14,6 @@ const Hero = () => {
             </div>
             <p>Book Collections</p>
             <p>for everyone</p>
-        </div>
-        <div className="hero-latest-btn">
-            <button>Latest Collection</button>
-            <img src={arrow_icon} alt="" />
         </div>
       </div>
     </div>

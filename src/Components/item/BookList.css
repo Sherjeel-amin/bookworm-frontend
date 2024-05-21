@@ -1,0 +1,124 @@
+.booklist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 100px;
+}
+
+.booklist ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.booklist ul li {
+    text-decoration: none;
+    margin-left: 50px;
+    transition: transform 0.3s ease;
+}
+
+.booklist h2 {
+    color: brown;
+    font-size: 50px;
+    font-weight: 600;
+}
+
+.booklist hr {
+    width: 200px;
+    height: 6px;
+    border-radius: 10px;
+    background: #252525;
+}
+
+.collections {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: 50px;
+    gap: 40px;
+}
+
+.collections img {
+    width: 300px;
+}
+
+.search-bar {
+    width: 1000px;
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+
+.search-bar input[type=text] {
+    width: 100%;
+    padding: 20px;
+    font-size: 25px;
+    border: 2px solid rgb(142, 122, 122);
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.booklist ul li:hover {
+    transform: scale(1.05);
+}
+
+
+@media screen and (max-width: 768px) {
+    .booklist h2 {
+        font-size: 36px; 
+    }
+
+    .booklist hr {
+        width: 150px;
+    }
+
+    .collections {
+        grid-template-columns: 1fr; 
+
+    }
+
+    .collections img {
+        width: 100%; 
+    }
+
+    .search-bar {
+        width: 100%; 
+        max-width: 600px;
+        padding: 0 20px; 
+        box-sizing: border-box; 
+    }
+
+    .search-bar input[type=text] {
+        padding: 15px; 
+        font-size: 18px;
+    }
+}
+
+.pagination {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .pagination select,
+  .pagination button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 2px solid brown;
+    background-color: white;
+    color: brown;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .pagination select:hover,
+  .pagination button:hover {
+    background-color: brown;
+    color: white;
+  }
+  
+  .pagination .active {
+    background-color: brown;
+    color: white;
+  }
+  
