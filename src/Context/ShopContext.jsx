@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
-import axios from 'axios';
+import { booksData } from "../services/bookService";
 
 export const ShopContext = createContext(null);
 
@@ -10,14 +10,14 @@ const ShopContextProvider = (props) => {
         return storedCart || {};
     });
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false); // Initialize isLoggedIn state
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/books`);
-                const booksData = response.data;
-                setBooks(booksData);
+                const response = await booksData();
+                const bookData = response.data;
+                setBooks(bookData);
             } catch (error) {
                 console.error('Error fetching books:', error);
             }
@@ -25,16 +25,23 @@ const ShopContextProvider = (props) => {
         fetchData();
     }, []);
 
-    const all_product = books ? books : [];
+    const allProduct = books ? books : [];
 
     const addToCart = (itemId) => {
         setCartItems((prev) => ({ ...prev, [itemId]: (prev[itemId] || 0) + 1 }));
     }
 
-    const removeFromCart = (itemId) => {
+    const removeFromCart = (itemId, itemTitle) => {
         setCartItems((prev) => {
             const updatedCart = { ...prev };
             if (updatedCart[itemId] > 0) {
+                if (updatedCart[itemId] === 1) {
+                    const confirmed = window.confirm(`${itemTitle} will be removed! Are you sure you want to proceed?`);
+                    if (confirmed) {
+                        updatedCart[itemId]--;
+                        return updatedCart;
+                    }
+                }
                 updatedCart[itemId]--;
             }
             return updatedCart;
@@ -55,28 +62,27 @@ const ShopContextProvider = (props) => {
                 }
             }
         }
-        return totalAmount; 
+        return totalAmount;
     }
 
-    const getTotalCartItems = () =>{
+    const getTotalCartItems = () => {
         let totalItem = 0;
-        for(const item in cartItems){
-            if(cartItems[item]>0)
-            {
+        for (const item in cartItems) {
+            if (cartItems[item] > 0) {
                 totalItem += cartItems[item];
             }
         }
         return totalItem
     }
 
-    const contextValue = { 
-        getTotalCartItems, 
-        getTotalCartAmount, 
-        all_product, 
-        cartItems, 
-        addToCart, 
-        removeFromCart, 
-        isLoggedIn, 
+    const contextValue = {
+        getTotalCartItems,
+        getTotalCartAmount,
+        allProduct,
+        cartItems,
+        addToCart,
+        removeFromCart,
+        isLoggedIn,
         setIsLoggedIn
     };
 

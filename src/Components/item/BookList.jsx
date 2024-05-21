@@ -2,37 +2,24 @@ import React, { useState } from 'react';
 import './BookList.css';
 import { Link } from 'react-router-dom';
 import useBooks from './useBooks';
+import usePagination from '../../services/usePagination';
 
 const BooksList = () => {
   const books = useBooks();
   const [searchQuery, setSearchQuery] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const booksPerPage = 8;
 
-  // Logic to get the index of the first and last book on the current page
-  const indexOfLastBook = currentPage * booksPerPage;
-  const indexOfFirstBook = indexOfLastBook - booksPerPage;
-  
-  const currentBooks = books
-    .filter((item) => (
-      item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.author_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.category_name.toLowerCase().includes(searchQuery.toLowerCase())
-    ))
-    .slice(indexOfFirstBook, indexOfLastBook);
+  const filteredBooks = books.filter((item) => (
+    item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    item.author_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    item.category_name.toLowerCase().includes(searchQuery.toLowerCase())
+  ));
 
-  // Logic to change the page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const { currentItems: currentBooks, currentPage, totalPages, paginate } = usePagination(filteredBooks, 8);
 
-  // Options for the select dropdown
-
-  const totalPages = Math.ceil(books.length / booksPerPage);
   const pageOptions = [];
-  
   for (let i = 1; i <= totalPages; i++) {
     pageOptions.push(i);
   }
-  
 
   return (
     <div className='booklist'>

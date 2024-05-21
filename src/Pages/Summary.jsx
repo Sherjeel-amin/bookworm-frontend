@@ -1,19 +1,19 @@
 import React, { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
-import { ShopContext } from '../Context/ShopContext'; 
-import './CSS/Summary.css'; 
+import { ShopContext } from '../Context/ShopContext';
+import './CSS/Summary.css';
 import { Link } from 'react-router-dom';
+import { getAddress } from '../services/addressService';
+import { addOrder } from '../services/orderService';
 const Summary = () => {
-  const { cartItems, all_product, getTotalCartAmount } = useContext(ShopContext); 
+  const { cartItems, allProduct, getTotalCartAmount } = useContext(ShopContext);
   const [addressData, setAddressData] = useState([]);
   const [selectedAddressIndex, setSelectedAddressIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchAddressData = async () => {
-      const userId = localStorage.getItem('userId');
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/address?userId=${userId}`);
+        const response = await getAddress();
         const responseData = response.data;
         setAddressData(responseData.address);
       } catch (error) {
@@ -32,16 +32,17 @@ const Summary = () => {
 
     try {
       const userId = localStorage.getItem('userId');
-      const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/order`, {
+      const orderData = {
         userId: userId,
         addressData: addressData[selectedAddressIndex],
         cartItems: Object.keys(filteredCartItems).map(itemId => ({
-          title: all_product.find(product => product.id === Number(itemId)).title,
+          title: allProduct.find(product => product.id === Number(itemId)).title,
           quantity: filteredCartItems[itemId],
-          totalPrice: all_product.find(product => product.id === Number(itemId)).price * filteredCartItems[itemId]
+          totalPrice: allProduct.find(product => product.id === Number(itemId)).price * filteredCartItems[itemId]
         })),
-        totalAmount: getTotalCartAmount() 
-      });
+        totalAmount: getTotalCartAmount()
+      }
+      const response = await addOrder(orderData);
 
       console.log(response.data);
       alert("Order placed successfully!!!")
@@ -97,7 +98,7 @@ const Summary = () => {
       {Object.keys(filteredCartItems).length > 0 ? (
         <div>
           {Object.keys(filteredCartItems).map((itemId, index) => {
-            const itemInfo = all_product.find((product) => product.id === Number(itemId));
+            const itemInfo = allProduct.find((product) => product.id === Number(itemId));
             if (itemInfo) {
               return (
                 <div key={index} className="cart-item">

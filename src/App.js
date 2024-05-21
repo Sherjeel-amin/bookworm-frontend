@@ -27,13 +27,12 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/Fiction' element={<HomeCatergory banner={fiction_banner} category="Fiction" />} />
-          <Route path='/Non-Fiction' element={<HomeCatergory banner={nonfiction_banner} category="Non-fiction" />} />
-          <Route path='/Kids' element={<HomeCatergory banner={kid_banner} category="Kids" />} />
+          <Route path='/fiction' element={<HomeCatergory banner={fiction_banner} category="Fiction" />} />
+          <Route path='/non-Fiction' element={<HomeCatergory banner={nonfiction_banner} category="Non-fiction" />} />
+          <Route path='/kids' element={<HomeCatergory banner={kid_banner} category="Kids" />} />
           <Route path='/signup' element={<LoginSignup />} />
           <Route path='/login' element= {<Login />} />
           <Route path='/product' element={<Product />}>
-
             <Route path=':productId' element={<Product />} />
           </Route>
           <Route element={<PrivateRoutes />}>
@@ -46,8 +45,8 @@ function App() {
         <Footer />
         <ToastContainer/>
       </BrowserRouter>
-
-    </div>
+      
+</div>
   );
 }
 

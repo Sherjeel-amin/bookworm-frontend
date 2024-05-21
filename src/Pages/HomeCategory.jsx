@@ -1,13 +1,12 @@
 import React, { useContext } from 'react';
 import './CSS/HomeCategory.css';
 import { ShopContext } from '../Context/ShopContext.jsx';
-import dropdown_icon from '../Components/Assets/dropdown_icon.png';
 import { Link } from 'react-router-dom';
 
 const HomeCategory = (props) => {
-    const { all_product } = useContext(ShopContext);
+    const { allProduct } = useContext(ShopContext);
 
-    const filteredBooks = all_product.filter(book => book.category_name === props.category);
+    const filteredBooks = allProduct.filter(book => book.category_name === props.category);
 
     return (
         <div className='shop-category'>

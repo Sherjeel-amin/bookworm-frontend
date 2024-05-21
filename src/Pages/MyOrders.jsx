@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import './CSS/MyOrders.css'; 
+import { getOrder } from '../services/orderService';
 
 const MyOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -8,9 +8,8 @@ const MyOrders = () => {
 
   useEffect(() => {
     const fetchOrders = async () => {
-      const userId = localStorage.getItem('userId');
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/order?userId=${userId}`);
+        const response = await getOrder();
         setOrders(response.data);
         setIsLoading(false);
       } catch (error) {

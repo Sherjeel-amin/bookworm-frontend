@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import './CSS/Login.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { ShopContext } from '../Context/ShopContext'; 
+import { ShopContext } from '../Context/ShopContext';
+import { login } from '../services/userService';
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -12,7 +12,7 @@ const Login = () => {
         password: ''
     });
 
-    const { setIsLoggedIn } = useContext(ShopContext); 
+    const { setIsLoggedIn } = useContext(ShopContext);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -22,15 +22,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(
-                `${process.env.REACT_APP_API_BASE_URL}/login`,
-                new URLSearchParams(formData).toString(), // Serialize formData
-                {
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    }
-                }
-            );
+            const response = await login(formData);
             const responseData = response.data
 
             if (responseData.success) {
@@ -43,7 +35,7 @@ const Login = () => {
                 window.location.href = '/';
                 toast.success(responseData.message);
             } else {
-                
+
                 toast.error(responseData.message);
             }
         } catch (error) {

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import './CSS/LoginSignup.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { signUp } from '../services/userService';
 
 
 const LoginSignup = () => {
@@ -42,22 +42,14 @@ const LoginSignup = () => {
     setSubmitted(true);
     if (validateForm(formData)) {
       try {
-        const response = await axios.post(
-          `${process.env.REACT_APP_API_BASE_URL}/signup`,
-          new URLSearchParams(formData).toString(), // Serialize formData
-          {
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded' // Set the content type
-            }
-          }
-        )
+        const response = await signUp(formData);
 
         if (response.data.success) {
           toast.success("Account created successfully!", { position: "bottom-right" });
           alert("Account created!");
 
           window.location.href = '/login';
-        }else{
+        } else {
           toast.error("Account already exists!", { position: "top-right" });
 
         }

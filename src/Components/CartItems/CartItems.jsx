@@ -4,21 +4,21 @@ import { ShopContext } from '../../Context/ShopContext';
 import { Link } from 'react-router-dom';
 
 const CartItems = () => {
-    const { getTotalCartAmount, all_product, cartItems, addToCart, removeFromCart } = useContext(ShopContext);
+    const { getTotalCartAmount, allProduct, cartItems, addToCart, removeFromCart } = useContext(ShopContext);
     const totalAmount = getTotalCartAmount();
 
     const handleIncreaseQuantity = (itemId) => {
         addToCart(itemId);
     };
 
-    const handleDecreaseQuantity = (itemId) => {
+    const handleDecreaseQuantity = (itemId,itemTitle) => {
         if (cartItems[itemId] > 0) {
-            removeFromCart(itemId);
+            removeFromCart(itemId,itemTitle);
         }
     };
 
     // Check if cart is empty
-    const isCartEmpty = Object.values(cartItems).every(quantity => quantity === 0);
+    const isCartEmpty = Object.values(cartItems).every(quantity => quantity <= 0);
 
     // Render cart items if not empty
     if (!isCartEmpty) {
@@ -32,7 +32,7 @@ const CartItems = () => {
                     <p>Total</p>
                 </div>
                 <hr />
-                {all_product.map((e) => {
+                {allProduct.map((e) => {
                     if (cartItems[e.id] > 0) {
                         return (
                             <div key={e.id}>
@@ -41,7 +41,7 @@ const CartItems = () => {
                                     <p>{e.title}</p>
                                     <p>₹{e.price}</p>
                                     <div className="quanity-items">
-                                        <button className='cart-items-qty-b' onClick={() => handleDecreaseQuantity(e.id)}>-</button>
+                                        <button className='cart-items-qty-b' onClick={() => handleDecreaseQuantity(e.id,e.title)}>-</button>
                                         <span>{cartItems[e.id]}</span>
                                         <button className='cart-items-qty-b' onClick={() => handleIncreaseQuantity(e.id)}>+</button>
                                     </div>
